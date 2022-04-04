@@ -1,5 +1,5 @@
 package com.mohammed.safwat.ed.exceptions;
 
-public class EmployeeNotFoundException {
+public class EmployeeNotFoundException extends Exception{
 
 }
