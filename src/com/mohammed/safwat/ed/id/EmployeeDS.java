@@ -23,6 +23,7 @@ public interface EmployeeDS {
 	//MySql properties 
 	public static final String URL="jdbc:mysql://localhost:3306/mysql";
 	public static final String USERNAME="root";
+	//delete password before when project finished
 	public static final String PASSWORD="ahmedAk88*";
 	//Declare driver class: used to load driver class
 	public static final String DRIVER_CLASSNAME="com.mysql.jdbc.Driver";
