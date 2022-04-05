@@ -14,7 +14,7 @@ import com.mohammed.safwat.ed.exceptions.EmployeeNotFoundException;
 public class EmployeeDSMySqlImp implements EmployeeDS{
 	
 	//Database variables (importing jdbs interfaces for each)
-	//These are used to conncet to db, retrive data from db and send data to db. 
+	//These are used to connect to db, retrieve data from db and send data to db. 
 	private Connection cn = null;
 	private PreparedStatement st = null;
 	private ResultSet rs = null;
@@ -51,8 +51,15 @@ public class EmployeeDSMySqlImp implements EmployeeDS{
 		} catch (SQLException e1) {
 			System.out.println("Adding record failed..execution failed.");
 			e1.printStackTrace();
+		} finally {
+			try {
+				st.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
-		//When record sucessfully added to db
+		//When record successfully added to db
 		if(i > 1) {
 			System.out.println("Record added..");
 		}
@@ -60,13 +67,46 @@ public class EmployeeDSMySqlImp implements EmployeeDS{
 
 	@Override
 	public void deleteEmployee(int employeeID) {
-		// TODO Auto-generated method stub
+		int i = 0;
+		try {
+			st = cn.prepareStatement(DELETE_COMMAND);
+			st.setInt(1,employeeID);
+			i = st.executeUpdate();	//execute command
+		} catch (SQLException e) {
+			System.err.println("Delete operation failed..");
+			e.printStackTrace();
+		}finally {
+			try {
+				st.close(); //close connection
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 	}
 
 	@Override
 	public void updateEmployee(Employee e) {
-		// TODO Auto-generated method stub
+		int i = 0;
+		try {
+			st = cn.prepareStatement(UPDATE_COMMAND);
+			st.setInt(4, e.getEmployeeID());		//fill details for all values
+			st.setString(1, e.getEmployeeName());
+			st.setString(2, e.getTitle());
+			st.setInt(3, e.getAttendance());
+			i = st.executeUpdate();
+		} catch (SQLException e1) {
+			System.out.println("Updata operation failed..");
+			e1.printStackTrace();
+		}finally {
+			try {
+				st.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} //close connection
+		}
 		
 	}
 
