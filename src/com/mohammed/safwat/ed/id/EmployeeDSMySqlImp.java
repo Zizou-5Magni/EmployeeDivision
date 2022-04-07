@@ -83,6 +83,9 @@ public class EmployeeDSMySqlImp implements EmployeeDS{
 				e.printStackTrace();
 			}
 		}
+		if(i > 0) {
+			System.out.println("Record deleted successfully..");
+		}
 		
 	}
 
@@ -107,6 +110,10 @@ public class EmployeeDSMySqlImp implements EmployeeDS{
 				e1.printStackTrace();
 			} //close connection
 		}
+		if(i > 0) {
+			System.out.println("Record updated successfully..");
+		}
+		
 		
 	}
 
